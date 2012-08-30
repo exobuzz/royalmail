@@ -81,7 +81,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Airsure
         switch($country) {
             case 'AD': case 'AT': case 'BE': case 'DK': case 'FO': case 'FI': case 'FR': case 'DE':
             case 'IS': case 'LI': case 'LU': case 'MC': case 'NL': case 'PT': case 'IE': case 'ES':
-            case 'SE': case 'CH':
+            case 'SE': case 'CH': case 'AU':
 
             case 'BR': case 'CA': case 'HK': case 'MY': case 'SG':
             case 'US':
