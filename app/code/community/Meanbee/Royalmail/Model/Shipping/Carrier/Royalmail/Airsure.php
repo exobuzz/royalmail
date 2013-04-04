@@ -60,7 +60,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Airsure
 
             case 'AD':case 'FO': case 'IS': case 'LI': case 'MC': case 'CH':
 
-            case 'AU': case 'BR': case 'CA': case 'HK': case 'MY': case 'SG': case 'NZ': case 'US':
+            case 'AU': case 'HK': case 'MY': case 'SG': case 'NZ': case 'US':
                 return true;
         }
 
