@@ -69,6 +69,13 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                     if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()) {
                         $price = '0.00';
                     } else {
+                        $offset = $this->getConfigData('offset_' . $key);
+                        if (is_numeric($offset)) {
+                            $cost += $offset;
+                            if ($cost < 0) {
+                                $cost = 0;      
+                            }
+                        }
                         $price = $this->_performRounding($this->getFinalPriceWithHandlingFee($cost));
                     }
 

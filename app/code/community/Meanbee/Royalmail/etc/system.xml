@@ -93,6 +93,24 @@
                             <comment>Select the shipping options that you would like to appear to the customer as an option.  Any options that are not selected will not be presented to the customer.</comment>
                         </allowed_methods>
 
+                        <offset_firstclass translate="label">
+                            <label>Price offset for First Class</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </offset_firstclass>
+
+                        <offset_firstclassrecordedsignedfor translate="label">
+                            <label>Price offset for First Class Recorded / Signed for</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </offset_firstclassrecordedsignedfor>
+
                         <handling_fee translate="label">
                             <label>Handling Fee</label>
                             <frontend_type>text</frontend_type>
