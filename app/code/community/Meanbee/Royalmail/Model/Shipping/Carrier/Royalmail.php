@@ -160,8 +160,8 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
                 'airmail' => 'Airmail',
 
-                'airsure' => 'Airsure (Up to 41GBP Insurance)',
-                'airsureinsurance' => 'Airsure (Up to 250GBP/500GBP Insurance)',
+                'airsure' => 'Airsure',
+                'airsureinsurance' => 'Airsure',
 
                 'internationalsignedfor' => 'International Signed For',
                 'internationalsignedforinsurance' => 'International Signed For (Up to 500GBP Insurance)',
