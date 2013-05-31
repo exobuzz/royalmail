@@ -39,6 +39,6 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalsignedfor
     }
 
     protected function _getMaximumCartTotal() {
-        return 250;
+        return null;
     }
 }
