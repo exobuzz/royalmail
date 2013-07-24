@@ -61,6 +61,15 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Airmail
      */
     protected function getRates() {
         $country = strtoupper($this->_getCountry());
+        // we want to allow "standard" airmail for Brazil, Canada and Australia. If the country isn't
+        // one of these we are not calling from an airsure / signed for class (using airmail class directly) then return nothing
+        $class = get_parent_class($this);
+        if ($country != 'BR' &&
+            $country != 'CA' && 
+            $country != 'AU' &&
+            $class   == 'Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Abstract') {
+            return null;   
+        }
 
         if ($country != 'GB') {
             switch ($this->getPostageArea()) {
