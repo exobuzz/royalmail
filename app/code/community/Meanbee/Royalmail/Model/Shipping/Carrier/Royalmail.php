@@ -158,7 +158,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 'specialdelivery9am1000' => 'Special Delivery Guaranteed by 9am ',
                 'specialdelivery9am2500' => 'Special Delivery Guaranteed by 9am',
 
-                'airmail' => 'Airmail',
+                'airmail' => 'Airmail (NO Guaranteed Delivery)',
 
                 'airsure' => 'Airsure',
                 'airsureinsurance' => 'Airsure',
