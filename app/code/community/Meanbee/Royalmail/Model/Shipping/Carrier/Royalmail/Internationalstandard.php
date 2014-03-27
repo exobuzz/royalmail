@@ -34,6 +34,19 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
         if($weight > $this->maxWeight) {
             return null;
         }
+
+        // we want to allow "international standard" for Australia, Brazil, Canada, and Israel. If the country
+        // isn't one of these we are not calling from a parent class and we are in the frontend then return nothing.
+        $class = get_parent_class($this);
+        if ($country != 'AU' &&
+            $country != 'BR' &&
+            $country != 'CA' && 
+            $country != 'IL' &&
+            $class   == 'Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Abstract'
+            && Mage::getDesign()->getArea() == 'frontend') {
+            return null;   
+        }
+
         if($country != 'GB') {
             switch($worldZone) {
                 case 'eu':
