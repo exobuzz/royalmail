@@ -17,28 +17,28 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalsignedfor
-    extends Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Airmail {
+class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Specialdelivery9am
+    extends Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Abstract {
 
     protected function getRates() {
-        $rates = parent::getRates();
+        $rates = $this->_getRatesCsv();
 
-        if ($rates == null) {
-            return null;
+        if ($this->_getCountry() == 'GB') {
+            return $rates;
         }
 
-        for ($i = 0; $i < count($rates); $i++) {
-            $rates[$i]['cost'] += $this->_getExtraCharge();
+        return null;
+    }
+
+    protected function _getRatesCsv() {
+        $total = $this->getCartTotal();
+        if ($total <= 50) {
+            return $this->_loadCsv('9am50');
+        } else if ($total <= 1000) {
+            return $this->_loadCsv('9am1000');
+        } else if ($total <= 2500) {
+            return $this->_loadCsv('9am2500');
         }
-
-        return $rates;
-    }
-
-    protected function _getExtraCharge() {
-        return 5.30;
-    }
-
-    protected function _getMaximumCartTotal() {
         return null;
     }
 }
