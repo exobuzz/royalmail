@@ -265,6 +265,7 @@ class Meanbee_Royalmail_Helper_Data extends Mage_Core_Helper_Abstract {
         'VU' => array(self::INTERNATIONAL_SIGNED),
         'VA' => array(self::INTERNATIONAL_TRACKED_AND_SIGNED),
         'VE' => array(self::INTERNATIONAL_SIGNED),
+        'VI' => array(self::INTERNATIONAL_SIGNED),
         'VN' => array(self::INTERNATIONAL_SIGNED),
         'WF' => array(self::INTERNATIONAL_SIGNED),
         'EH' => array(self::INTERNATIONAL_SIGNED),
