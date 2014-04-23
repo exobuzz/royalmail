@@ -45,11 +45,6 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationaltracked
             return null;
         }
 
-        // Don't allow international tracked to Australia, Brazil, or Canada
-        if($country == 'AU' || $country == 'BR' || $country == 'CA') {
-            return null;
-        }
-
         if($country != 'GB') {
             switch($worldZone) {
                 case 'eu':
