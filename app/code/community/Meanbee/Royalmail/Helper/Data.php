@@ -240,7 +240,7 @@ class Meanbee_Royalmail_Helper_Data extends Mage_Core_Helper_Abstract {
         'SR' => array(self::INTERNATIONAL_SIGNED),
         'SZ' => array(self::INTERNATIONAL_SIGNED),
         'SE' => array(self::INTERNATIONAL_TRACKED_AND_SIGNED, self::INTERNATIONAL_TRACKED),
-        'CH' => array(self::INTERNATIONAL_TRACKED_AND_SIGNED, self::INTERNATIONAL_TRACKED),
+        'CH' => array(self::INTERNATIONAL_TRACKED_AND_SIGNED),
         'SY' => array(self::INTERNATIONAL_SIGNED),
         'TW' => array(self::INTERNATIONAL_SIGNED),
         'TJ' => array(self::INTERNATIONAL_SIGNED),
