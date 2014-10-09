@@ -39,6 +39,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
         // isn't one of these we are not calling from a parent class and we are in the frontend then return nothing.
         $class = get_parent_class($this);
         if ($country != 'AU' &&
+            $country != 'AR' &&
             $country != 'BR' &&
             $country != 'CA' && 
             $country != 'IL' &&
