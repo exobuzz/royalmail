@@ -48,35 +48,33 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
             return null;   
         }
 
-        if($country != 'GB') {
-            switch($worldZone) {
-                case 'eu':
-                case 'noneu':
-                    $rates = $_helper->addAdditionalWeightCharges(
-                        $this->_getEuropeRates(),
-                        $this->additionalChargeEurope,
-                        $weight
-                    );
-                    break;
-                case 'wz1':
-                    $rates = $_helper->addAdditionalWeightCharges(
-                        $this->_getWz1Rates(),
-                        $this->additionalChargeWz1,
-                        $weight
-                    );
-                    break;
-                case 'wz2':
-                    $rates = $_helper->addAdditionalWeightCharges(
-                        $this->_getWz2Rates(),
-                        $this->additionalChargeWz2,
-                        $weight
-                    );
-                    break;
-            }
-            return $rates;
+        switch($worldZone) {
+            case 'gb':
+                return null;
+            case 'eu':
+            case 'noneu':
+                $rates = $_helper->addAdditionalWeightCharges(
+                    $this->_getEuropeRates(),
+                    $this->additionalChargeEurope,
+                    $weight
+                );
+                break;
+            case 'wz1':
+                $rates = $_helper->addAdditionalWeightCharges(
+                    $this->_getWz1Rates(),
+                    $this->additionalChargeWz1,
+                    $weight
+                );
+                break;
+            case 'wz2':
+                $rates = $_helper->addAdditionalWeightCharges(
+                    $this->_getWz2Rates(),
+                    $this->additionalChargeWz2,
+                    $weight
+                );
+                break;
         }
-
-        return null;
+        return $rates;
     }
 
     public function calculateRate($weight) {
