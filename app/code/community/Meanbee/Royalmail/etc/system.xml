@@ -111,6 +111,15 @@
                             <show_in_store>1</show_in_store>
                          </offset_firstclassrecordedsignedfor>
 
+                        <offset_internationalstandard translate="label">
+                            <label>Price offset for International Standard</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </offset_internationalstandard>
+
                         <handling_fee translate="label">
                             <label>Handling Fee</label>
                             <frontend_type>text</frontend_type>
