@@ -30,6 +30,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
         $freeBoxes = 0;
         $removeWeight = 0;
+        $freeShown = false;
         if ($request->getAllItems()) {
             foreach ($request->getAllItems() as $item) {
                 if ($item->getFreeShipping() && !$item->getProduct()->getTypeInstance()->isVirtual()) {
@@ -66,7 +67,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                     $method->setMethod($key);
                     $method->setMethodTitle($value);
 
-                    if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()) {
+                    if (!$freeShown && ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes())) {
                         $price = '0.00';
                     } else {
                         $offset = $this->getConfigData('offset_' . $key);
@@ -85,7 +86,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                     $result->append($method);
                     
                     if ($price == '0.00') {
-                        break; // No more free methods
+                        $freeShown = true;
                     }
                 }
             }
