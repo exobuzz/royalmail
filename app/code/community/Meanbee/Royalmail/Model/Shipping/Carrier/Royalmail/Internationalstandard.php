@@ -41,10 +41,11 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
         if ($country != 'AU' &&
             $country != 'AR' &&
             $country != 'BR' &&
-            $country != 'CA' && 
+            $country != 'CA' &&
             $country != 'IL' &&
-            $country != 'RE' && 
-            $country != 'US' && 
+            $country != 'RE' &&
+            $country != 'US' &&
+            $country != 'ZA' &&
             $class   == 'Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Abstract'
             && Mage::getDesign()->getArea() == 'frontend') {
             return null;   
