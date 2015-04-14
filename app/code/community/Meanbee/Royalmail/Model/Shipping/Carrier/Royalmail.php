@@ -162,7 +162,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
                 'specialdelivery9am' => 'Special Delivery Guaranteed by 9am',
 
-                'internationalstandard' => 'International Standard (Formerly Airmail)',
+                'internationalstandard' => 'International Standard (Formerly Airmail) - NO TRACKING NUMBER',
                 'internationaltrackedsigned' => 'International Tracked & Signed',
                 'internationaltracked' => 'International Tracked',
                 'internationalsigned' => 'International Signed',
