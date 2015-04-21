@@ -332,6 +332,8 @@ class Meanbee_Royalmail_Helper_Data extends Mage_Core_Helper_Abstract {
      * @return mixed
      */
     public function addInsuranceCharges($rates, $charge, $cartTotal, $valueOver = 50) {
+        // disable all insurance charges - https://redmine.oxfordinspire.co.uk/issues/1383
+        return $rates;
         if($cartTotal > $valueOver) {
             for($i = 0; $i < count($rates); $i++) {
                 $rates[$i]['cost'] += $charge;
