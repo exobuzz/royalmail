@@ -20,20 +20,12 @@
 class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
     extends Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Abstract {
 
-    protected $additionalChargeEurope = 1.45;
-    protected $additionalChargeWz1 = 2.70;
-    protected $additionalChargeWz2 = 2.85;
-    protected $maxWeight = 5000;
 
     public function getRates() {
         $_helper = Mage::helper('royalmail');
         $country = $this->_getCountry();
         $worldZone = $_helper->getWorldZone($country);
-        $weight = $this->_getWeight();
 
-        if($weight > $this->maxWeight) {
-            return null;
-        }
 
         // we want to allow "international standard" for Australia, Brazil, Canada, Réunion, and Israel. If the country
         // isn't one of these we are not calling from a parent class and we are in the frontend then return nothing.
@@ -52,40 +44,21 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail_Internationalstandard
         }
 
         switch($worldZone) {
-            case 'gb':
+            case Meanbee_Royalmail_Helper_Data::WORLD_ZONE_GB:
                 return null;
-            case 'eu':
-            case 'noneu':
-                $rates = $_helper->addAdditionalWeightCharges(
-                    $this->_getEuropeRates(),
-                    $this->additionalChargeEurope,
-                    $weight
-                );
+            case Meanbee_Royalmail_Helper_Data::WORLD_ZONE_EU:
+                $rates = $this->_getEuropeRates();
                 break;
-            case 'wz1':
-                $rates = $_helper->addAdditionalWeightCharges(
-                    $this->_getWz1Rates(),
-                    $this->additionalChargeWz1,
-                    $weight
-                );
+            case Meanbee_Royalmail_Helper_Data::WORLD_ZONE_ONE:
+                $rates = $this->_getWz1Rates();
                 break;
-            case 'wz2':
-                $rates = $_helper->addAdditionalWeightCharges(
-                    $this->_getWz2Rates(),
-                    $this->additionalChargeWz2,
-                    $weight
-                );
+            case Meanbee_Royalmail_Helper_Data::WORLD_ZONE_TWO:
+                $rates = $this->_getWz2Rates();
                 break;
+            default:
+                return null;
         }
         return $rates;
-    }
-
-    public function calculateRate($weight) {
-        if($weight <= $this->maxWeight) {
-            $rates = $this->getRates();
-            return $rates[count($rates)-1]['cost'];
-        }
-        return null;
     }
 
     protected function _getEuropeRates() {

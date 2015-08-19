@@ -147,10 +147,16 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
     public function getMethods($name=null) {
         $codes = array(
                 // To maintain backwards comparability we need to keep letter and largeletter indices the same
+
                 'letter' => 'First Class Letter',
                 'largeletter' => 'First Class Large Letter',
+                'firstclasslettersignedfor' => 'First Class Letter (Signed for)',
+                'firstclasslargelettersignedfor' => 'First Class Large Letter (Signed for)',
+
                 'secondclassletter' => 'Second Class Letter',
                 'secondclasslargeletter' => 'Second Class Large Letter',
+                'secondclasslettersignedfor' => 'Second Class Letter (Signed For)',
+                'secondclasslargelettersignedfor' => 'Second Class Large Letter (Signed For)',
 
                 'secondclass' => 'Second Class Parcel',
                 'secondclassrecordedsignedfor' => 'Second Class Parcel (Signed for)',
@@ -159,14 +165,21 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 'firstclassrecordedsignedfor' => 'First Class Parcel (Signed for)',
 
                 'specialdeliverynextday' => 'Special Delivery Guaranteed by 1pm',
-
                 'specialdelivery9am' => 'Special Delivery Guaranteed by 9am',
+                'specialdelivery9amsaturday' => 'Special Delivery Saturday Guaranteed by 9am',
+                'specialdeliverynextdaysaturday' => 'Special Delivery Saturday Guaranteed by 1pm',
 
                 'internationalstandard' => 'International Standard (Formerly Airmail) - NO TRACKING NUMBER',
                 'internationaltrackedsigned' => 'International Tracked & Signed',
                 'internationaltracked' => 'International Tracked',
                 'internationalsigned' => 'International Signed',
-                'internationaleconomy' => 'International Economy'
+                'internationaleconomy' => 'International Economy',
+
+                'internationallettertracked' => 'International Letter Tracked',
+                'internationallettersigned' => 'International Letter Signed',
+                'internationallettereconomy' => 'International Letter Economy',
+                'internationalletterstandard' => 'International Letter Standard',
+                'internationallettertrackedsigned' => 'International Letter Tracked (Signed)',
         );
         
         if ($name !== null) {
