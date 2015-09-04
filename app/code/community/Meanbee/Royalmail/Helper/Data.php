@@ -39,7 +39,7 @@ class Meanbee_Royalmail_Helper_Data extends Mage_Core_Helper_Abstract {
         'PT', 'RO', 'RU', 'SM', 'RS',
         'SK', 'SI', 'ES', 'SE', 'CH',
         'TJ', 'TR', 'TM', 'UA', 'UZ',
-        'VA');
+        'VA', 'XK');
 
     protected  $_worldZone2 = array(
         'AU', 'PW', 'IO', 'CX', 'CC',
@@ -273,7 +273,8 @@ class Meanbee_Royalmail_Helper_Data extends Mage_Core_Helper_Abstract {
         'WS' => array(self::INTERNATIONAL_SIGNED),
         'YE' => array(self::INTERNATIONAL_SIGNED),
         'ZM' => array(self::INTERNATIONAL_SIGNED),
-        'ZW' => array(self::INTERNATIONAL_SIGNED)
+        'ZW' => array(self::INTERNATIONAL_SIGNED),
+        'XK' => array(self::INTERNATIONAL_SIGNED),
     );
 
     protected function _isCountryAvailableForMethod($countryCode, $method) {
