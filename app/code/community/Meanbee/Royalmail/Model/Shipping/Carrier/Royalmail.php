@@ -119,6 +119,43 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                     }
                 }
 
+                $websiteId = Mage::getModel('core/store')->load($request->getStoreId())->getWebsiteId();
+                $country = $data['dest_country_id'];
+
+                foreach ($calculatedMethods as $key => $value) {
+                    // no 9am service to Guernsey
+                    if (in_array($country, array('GG')) &&
+                        strpos($value->shippingMethodName, "9AM") !== false) {
+                        unset($calculatedMethods[$key]);
+                    }
+                }
+
+                if ($websiteId != 2) {
+                    foreach ($calculatedMethods as $key => $value) {
+                        // no tracked & signed for Australia, Brazil and Canada
+                        if (in_array($country, array('AU', 'BR', 'CA')) &&
+                            strpos($value->shippingMethodName, "TRACKED_AND_SIGNED") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+                        // no tracked & signed or signed delivery to Argentina, Israel and South Africa
+                        if (in_array($country, array('AR', 'IL', 'ZA')) &&
+                            strpos($value->shippingMethodName, "SIGNED") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+                        // no signed delivery to Switzerland
+                        if (in_array($country, array('CH')) &&
+                            strpos($value->shippingMethodName, "TRACKED") === false &&
+                            strpos($value->shippingMethodName, "SIGNED") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+                        // only allow international standard to certain countries
+                        if (! in_array($country, array('AU', 'AR', 'CA', 'IL', 'RE', 'US', 'ZA')) &&
+                            strpos($value->shippingMethodName, "STANDARD") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+                    }
+                }
+
             }
 
             foreach ($allowedMethods as $allowedMethod) {
