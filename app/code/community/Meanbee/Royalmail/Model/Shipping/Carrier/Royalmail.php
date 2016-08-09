@@ -174,6 +174,11 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                             $price = '0.00';
                         } else {
                             $price = $this->_performRounding($this->getFinalPriceWithHandlingFee($methodItem->methodPrice));
+                            $currency = Mage::getModel('core/store')->load($request->getStoreId())->getBaseCurrencyCode();
+                            if ( $currency != "GBP" ) {
+                                $price = Mage::helper('directory')->currencyConvert($price, "GBP", $currency);
+                            }
+
                         }
 
                         $method->setPrice($price);
