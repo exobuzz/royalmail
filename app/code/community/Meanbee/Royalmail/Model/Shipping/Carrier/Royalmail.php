@@ -158,6 +158,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
             }
 
+            $freeShown = false;
             foreach ($allowedMethods as $allowedMethod) {
                 foreach ($calculatedMethods as $methodItem) {
                     if ($allowedMethod[1] == $methodItem->shippingMethodNameClean) {
@@ -170,8 +171,9 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         $method->setMethod($methodItem->shippingMethodName);
                         $method->setMethodTitle($methodItem->shippingMethodNameClean);
 
-                        if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()) {
+                        if (!$freeShown && ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes())) {
                             $price = '0.00';
+                            $freeShown = true;
                         } else {
                             $price = $this->_performRounding($this->getFinalPriceWithHandlingFee($methodItem->methodPrice));
                             $currency = Mage::getModel('core/store')->load($request->getStoreId())->getBaseCurrencyCode();
