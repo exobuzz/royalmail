@@ -163,6 +163,9 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 foreach ($calculatedMethods as $methodItem) {
                     if ($allowedMethod[1] == $methodItem->shippingMethodNameClean) {
 
+                        // add warning to international standard name
+                        $methodItem->shippingMethodNameClean = str_replace("International Standard", "International Standard (Formerly Airmail - NO TRACKING NUMBER) ", $methodItem->shippingMethodNameClean);
+
                         $method = Mage::getModel('shipping/rate_result_method');
 
                         $method->setCarrier($this->_code);
