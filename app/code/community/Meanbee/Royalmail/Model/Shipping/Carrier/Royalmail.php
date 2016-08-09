@@ -95,7 +95,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
             $dataClass->_setWeight($data['package_weight']);
 
             $calculatedMethods = $this->calculateMethodClass->getMethods($data['dest_country_id'],
-                $data['package_value'], $dataClass->_getWeight());
+                0, $dataClass->_getWeight());
 
             // Config check to remove small or medium parcel size based on the
             // config value set in the admin panel
