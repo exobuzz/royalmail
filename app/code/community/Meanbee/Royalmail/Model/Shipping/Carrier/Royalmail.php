@@ -128,6 +128,13 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         strpos($value->shippingMethodName, "9AM") !== false) {
                         unset($calculatedMethods[$key]);
                     }
+
+                    // no signed delivery to Australia, USA and New Zealand
+                    if (in_array($country, array('AU','US', 'NZ')) &&
+                        strpos($value->shippingMethodName, "TRACKED") === false &&
+                        strpos($value->shippingMethodName, "SIGNED") !== false) {
+                        unset($calculatedMethods[$key]);
+                    }
                 }
 
                 if ($websiteId != 2) {
@@ -142,12 +149,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                             strpos($value->shippingMethodName, "SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
-                        // no signed delivery to Switzerland
-                        if (in_array($country, array('CH')) &&
-                            strpos($value->shippingMethodName, "TRACKED") === false &&
-                            strpos($value->shippingMethodName, "SIGNED") !== false) {
-                            unset($calculatedMethods[$key]);
-                        }
+
                         // only allow international standard to certain countries
                         if (! in_array($country, array('AU', 'AR', 'CA', 'IL', 'RE', 'US', 'ZA')) &&
                             strpos($value->shippingMethodName, "STANDARD") !== false) {
