@@ -200,7 +200,8 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
                 }
 
-                if ($websiteId != 2) {
+                // rules for seedsman website only
+                if ($websiteId == 1 && ! Mage::app()->getStore()->isAdmin()) {
                     foreach ($calculatedMethods as $key => $value) {
                         // no tracked & signed for Australia, Brazil and Canada
                         if (in_array($country, array('AU', 'BR', 'CA')) &&
