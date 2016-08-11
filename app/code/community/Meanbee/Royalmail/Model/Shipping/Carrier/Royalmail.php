@@ -122,6 +122,55 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 $websiteId = Mage::getModel('core/store')->load($request->getStoreId())->getWebsiteId();
                 $country = $data['dest_country_id'];
 
+                // temporarily fix country exclusions for delivery methods until library is fixed
+                $excl_tracked_signed = array(
+                    "AF", "AL", "DZ", "AS", "AO", "AI", "AQ", "AG", "AM", "AW", "AU", "AZ",
+                    "BS", "BH", "BD", "BB", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV",
+                    "BR", "IO", "VG", "BN", "BF", "BI", "CM", "CV", "CF", "TD", "CL", "CN",
+                    "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CU", "CI", "DJ", "DM",
+                    "DO", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "GF", "PF",
+                    "TF", "GA", "GM", "GE", "GH", "GL", "GD", "GP", "GU", "GT", "GG", "GN",
+                    "GW", "GY", "HT", "HM", "HN", "IN", "IR", "IQ", "IM", "IL", "JM", "JE",
+                    "JO", "KZ", "KE", "KI", "KW", "KG", "LA", "LB", "LS", "LR", "LY", "MO",
+                    "MK", "MG", "MW", "MV", "ML", "MH", "MQ", "MR", "MU", "YT", "MX", "FM",
+                    "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "AN", "NC",
+                    "NI", "NE", "NG", "NU", "NF", "KP", "MP", "NO", "OM", "PK", "PW", "PS",
+                    "PA", "PG", "PY", "PE", "PH", "PN", "PR", "QA", "RU", "RW", "RE", "BL",
+                    "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SA", "SN", "SC", "SL", "SB",
+                    "SO", "ZA", "GS", "LK", "SD", "SR", "SJ", "SZ", "SY", "ST", "TW", "TJ",
+                    "TZ", "TL", "TG", "TK", "TO", "TN", "TM", "TC", "TV", "UM", "VI", "UG",
+                    "UA", "GB", "UY", "UZ", "VU", "VE", "VN", "WF", "EH", "YE", "ZM", "ZW",
+                    "AX"
+                );
+
+                $exc_tracked = array(
+                    "AF", "AL", "DZ", "AS", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AZ",
+                    "BS", "BH", "BD", "BB", "BY", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW",
+                    "BV", "IO", "VG", "BN", "BG", "BF", "BI", "KH", "CM", "CV", "KY", "CF",
+                    "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CU",
+                    "CZ", "CI", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "ET", "FK",
+                    "FO", "FJ", "GF", "PF", "TF", "GA", "GM", "GE", "GH", "GI", "GR", "GL",
+                    "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "HN", "ID",
+                    "IR", "IQ", "IM", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KW", "KG",
+                    "LA", "LS", "LR", "LY", "MO", "MK", "MG", "MW", "MV", "ML", "MH", "MQ",
+                    "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ",
+                    "MM", "NA", "NR", "NP", "AN", "NC", "NI", "NE", "NG", "NU", "NF", "KP",
+                    "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN",
+                    "PR", "QA", "RO", "RW", "RE", "BL", "SH", "KN", "LC", "MF", "PM", "VC",
+                    "WS", "SA", "SN", "RS", "SC", "SL", "SB", "SO", "ZA", "GS", "LK", "SD",
+                    "SR", "SJ", "SZ", "SY", "ST", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK",
+                    "TO", "TT", "TN", "TM", "TC", "TV", "UM", "VI", "UG", "UA", "AE", "GB",
+                    "UY", "UZ", "VU", "VE", "VN", "WF", "EH", "YE", "ZM", "ZW", "AX"
+                );
+
+                $excl_signed = array(
+                    "AD", "AR", "AT", "BE", "BG", "KH", "CA", "KY", "HR", "CY", "CZ", "DK",
+                    "EC", "FR", "DE", "GI", "GR", "HK", "HU", "IS", "ID", "IE", "IT", "JP",
+                    "LV", "LI", "LT", "LU", "MY", "MT", "MD", "NL", "NZ", "PL", "PT", "RO",
+                    "SM", "RS", "SG", "SK", "SI", "SO", "KR", "ES", "SE", "CH", "TH", "TT",
+                    "TR", "AE", "US", "VA"
+                );
+
                 foreach ($calculatedMethods as $key => $value) {
                     // no 9am service to Guernsey
                     if (in_array($country, array('GG')) &&
@@ -129,12 +178,26 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         unset($calculatedMethods[$key]);
                     }
 
-                    // no signed delivery to USA and New Zealand
-                    if (in_array($country, array('US', 'NZ')) &&
+                    // tracked & signed inclusions
+                    if (in_array($country, $excl_tracked_signed) &&
+                        strpos($value->shippingMethodName, "TRACKED_AND_SIGNED") !== false) {
+                        unset($calculatedMethods[$key]);
+                    }
+
+                    // tracked delivery inclusions
+                    if (in_array($country, $excl_tracked) &&
+                        strpos($value->shippingMethodName, "TRACKED") !== false &&
+                        strpos($value->shippingMethodName, "SIGNED") === false) {
+                        unset($calculatedMethods[$key]);
+                    }
+
+                    // signed delivery inclusions
+                    if (in_array($country, $excl_signed) &&
                         strpos($value->shippingMethodName, "TRACKED") === false &&
                         strpos($value->shippingMethodName, "SIGNED") !== false) {
                         unset($calculatedMethods[$key]);
                     }
+
                 }
 
                 if ($websiteId != 2) {
