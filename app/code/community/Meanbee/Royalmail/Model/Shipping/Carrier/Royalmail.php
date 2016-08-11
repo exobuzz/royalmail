@@ -129,8 +129,8 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         unset($calculatedMethods[$key]);
                     }
 
-                    // no signed delivery to Australia, USA and New Zealand
-                    if (in_array($country, array('AU','US', 'NZ')) &&
+                    // no signed delivery to USA and New Zealand
+                    if (in_array($country, array('US', 'NZ')) &&
                         strpos($value->shippingMethodName, "TRACKED") === false &&
                         strpos($value->shippingMethodName, "SIGNED") !== false) {
                         unset($calculatedMethods[$key]);
@@ -146,6 +146,13 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         }
                         // no tracked & signed or signed delivery to Argentina, Israel and South Africa
                         if (in_array($country, array('AR', 'IL', 'ZA')) &&
+                            strpos($value->shippingMethodName, "SIGNED") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+
+                        // no signed delivery to Australia
+                        if (in_array($country, array('AU')) &&
+                            strpos($value->shippingMethodName, "TRACKED") === false &&
                             strpos($value->shippingMethodName, "SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
