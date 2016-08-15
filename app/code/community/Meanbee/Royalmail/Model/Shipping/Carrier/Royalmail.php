@@ -208,6 +208,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                             strpos($value->shippingMethodName, "TRACKED_AND_SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
+
                         // no tracked & signed or signed delivery to Argentina, Israel and South Africa
                         if (in_array($country, array('AR', 'IL', 'ZA')) &&
                             strpos($value->shippingMethodName, "SIGNED") !== false) {
@@ -225,6 +226,11 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                         if (! in_array($country, array('AU', 'AR', 'CA', 'IL', 'RE', 'US', 'ZA')) &&
                             strpos($value->shippingMethodName, "INTERNATIONAL_STANDARD") !== false) {
                             unset($calculatedMethods[$key]);
+                        }
+
+                        // subtract 1.50 from first class signed for
+                        if (strpos($value->shippingMethodName, "UK_CONFIRMED_ROYAL_MAIL_SIGNED_FOR_FIRST_CLASS") !== false) {
+                            $calculatedMethods[$key]->methodPrice -= 1.50;
                         }
                     }
                 }
