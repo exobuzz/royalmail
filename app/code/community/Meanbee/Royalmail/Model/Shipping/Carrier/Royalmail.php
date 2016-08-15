@@ -223,7 +223,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
 
                         // only allow international standard to certain countries
                         if (! in_array($country, array('AU', 'AR', 'CA', 'IL', 'RE', 'US', 'ZA')) &&
-                            strpos($value->shippingMethodName, "STANDARD") !== false) {
+                            strpos($value->shippingMethodName, "INTERNATIONAL_STANDARD") !== false) {
                             unset($calculatedMethods[$key]);
                         }
                     }
