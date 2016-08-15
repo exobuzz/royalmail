@@ -232,8 +232,13 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
             }
 
             $freeShown = false;
-            foreach ($allowedMethods as $allowedMethod) {
-                foreach ($calculatedMethods as $methodItem) {
+
+            uasort($calculatedMethods, function($a, $b) {
+                return $a->methodPrice > $b->methodPrice;
+            });
+
+            foreach ($calculatedMethods as $methodItem) {
+                foreach ($allowedMethods as $allowedMethod) {
                     if ($allowedMethod[1] == $methodItem->shippingMethodNameClean) {
 
                         // add warning to international standard name
