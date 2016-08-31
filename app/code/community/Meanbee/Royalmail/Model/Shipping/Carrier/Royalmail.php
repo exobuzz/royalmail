@@ -143,7 +143,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                     "AX"
                 );
 
-                $exc_tracked = array(
+                $excl_tracked = array(
                     "AF", "AL", "DZ", "AS", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AZ",
                     "BS", "BH", "BD", "BB", "BY", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW",
                     "BV", "IO", "VG", "BN", "BG", "BF", "BI", "KH", "CM", "CV", "KY", "CF",
