@@ -203,21 +203,14 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 // rules for seedsman website only
                 if ($websiteId == 1 && ! Mage::app()->getStore()->isAdmin()) {
                     foreach ($calculatedMethods as $key => $value) {
-                        // no tracked & signed for Australia, Brazil and Canada
-                        if (in_array($country, array('AU', 'BR', 'CA')) &&
+                        // no tracked & signed for Brazil and Canada
+                        if (in_array($country, array('BR', 'CA')) &&
                             strpos($value->shippingMethodName, "TRACKED_AND_SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
 
                         // no tracked & signed or signed delivery to Argentina, Israel and South Africa
                         if (in_array($country, array('AR', 'IL', 'ZA')) &&
-                            strpos($value->shippingMethodName, "SIGNED") !== false) {
-                            unset($calculatedMethods[$key]);
-                        }
-
-                        // no signed delivery to Australia
-                        if (in_array($country, array('AU')) &&
-                            strpos($value->shippingMethodName, "TRACKED") === false &&
                             strpos($value->shippingMethodName, "SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
