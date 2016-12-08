@@ -226,6 +226,14 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                             $calculatedMethods[$key]->methodPrice -= 1.50;
                         }
                     }
+                } else if ($websiteId == 2 && ! Mage::app()->getStore()->isAdmin()) {
+                    foreach ($calculatedMethods as $key => $value) {
+                        # no international standard for wholesale for US
+                        if (in_array($country, array('US')) &&
+                            strpos($value->shippingMethodName, "INTERNATIONAL_STANDARD") !== false) {
+                            unset($calculatedMethods[$key]);
+                        }
+                    }
                 }
 
             }
