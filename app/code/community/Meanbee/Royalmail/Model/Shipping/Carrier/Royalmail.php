@@ -204,7 +204,7 @@ class Meanbee_Royalmail_Model_Shipping_Carrier_Royalmail
                 if ($websiteId == 1 && ! Mage::app()->getStore()->isAdmin()) {
                     foreach ($calculatedMethods as $key => $value) {
                         // no tracked & signed for Brazil and Canada
-                        if (in_array($country, array('BR', 'CA')) &&
+                        if (in_array($country, array('BR')) &&
                             strpos($value->shippingMethodName, "TRACKED_AND_SIGNED") !== false) {
                             unset($calculatedMethods[$key]);
                         }
